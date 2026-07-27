@@ -270,12 +270,9 @@ body {
 
 
 .search-container {
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 
   background:
     rgba(255,255,255,.85);
@@ -292,6 +289,7 @@ body {
   box-shadow:
     0 20px 40px rgba(15,23,42,.12);
 
+  justify-content: space-between;
 }
 
 
