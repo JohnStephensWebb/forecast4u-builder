@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 function WeatherPage() {
   const { zip } = useParams();
 
-  const [_weather, setWeather] = useState<any>(null);
+  const [weather, setWeather] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 const forecast = [
@@ -96,8 +96,13 @@ const forecast = [
           <Sun size={72} />
 
           <div>
-            <h1>72°</h1>
-            <p>Mostly Sunny</p>
+            <h1>
+  {Math.round(weather.current.temperature)}°
+</h1>
+
+<p>
+  Current Conditions
+</p>
           </div>
         </div>
 
@@ -111,14 +116,17 @@ const forecast = [
 
           <div>
             <Wind />
-            <span>Wind</span>
-            <strong>8 mph NW</strong>
+            <<strong>
+  {weather.current.wind} mph
+</strong>
           </div>
 
           <div>
             <Droplets />
             <span>Humidity</span>
-            <strong>41%</strong>
+            <strong>
+  {weather.current.humidity}%
+</strong>
           </div>
 
           <div>
