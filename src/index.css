@@ -421,17 +421,13 @@ body {
   color:#334155;
 }
 
-.weather-card {
-  padding:40px;
-  border-radius:32px;
+.weather-card h2 {
+  margin-bottom:8px;
+  font-size:1.5rem;
+}
 
-  background:
-    rgba(255,255,255,.55);
-
-  backdrop-filter:blur(24px);
-
-  box-shadow:
-    0 30px 80px rgba(15,23,42,.12);
+.weather-card .location {
+  margin-bottom:0;
 }
 
 .location {
