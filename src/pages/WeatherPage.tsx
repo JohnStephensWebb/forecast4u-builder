@@ -29,7 +29,14 @@ const [error, setError] = useState("");
   }
 
   loadWeather();
-}, [zip]);
+  }, [zip]);
+if (loading) {
+  return <h2>Loading forecast...</h2>;
+}
+
+if (error) {
+  return <h2>{error}</h2>;
+}
 
   return (
     <div className="weather-page">
