@@ -89,8 +89,8 @@ const forecast = [
         <h2>Forecast4U</h2>
 
         <p className="location">
-          Forecast for ZIP {zip}
-        </p>
+  Forecast for {weather.location.city}, {weather.location.state}
+</p>
 
         <div className="current-weather">
           <Sun size={72} />
