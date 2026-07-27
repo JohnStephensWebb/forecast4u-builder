@@ -595,3 +595,29 @@ body {
 .home p {
   color: #334155;
 }
+
+.forecast-day {
+  margin-bottom: 40px;
+}
+
+.forecast-day h3 {
+  margin-bottom: 16px;
+  color: #0f172a;
+}
+
+.forecast-strip {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+}
+
+.forecast-card {
+  min-width: 120px;
+  flex-shrink: 0;
+}
+
+.forecast-time {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
