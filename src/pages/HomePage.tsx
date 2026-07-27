@@ -1,7 +1,9 @@
+import { TextInput, Button } from "@carbon/react";
 import { motion } from "framer-motion";
 import { CloudSun, MapPin, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+
 
 function HomePage() {
   const navigate = useNavigate();
