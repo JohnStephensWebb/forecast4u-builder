@@ -20,13 +20,16 @@ function WeatherPage() {
   const [weather, setWeather] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-const forecast = [
-  { day: "Mon", icon: "☀️", high: "82°", low: "61°" },
-  { day: "Tue", icon: "🌤️", high: "79°", low: "59°" },
-  { day: "Wed", icon: "🌧️", high: "68°", low: "55°" },
-  { day: "Thu", icon: "☀️", high: "85°", low: "63°" },
-  { day: "Fri", icon: "🌤️", high: "77°", low: "60°" },
-];
+
+
+  const forecast = [
+    { day: "Mon", icon: "☀️", high: "82°", low: "61°" },
+    { day: "Tue", icon: "🌤️", high: "79°", low: "59°" },
+    { day: "Wed", icon: "🌧️", high: "68°", low: "55°" },
+    { day: "Thu", icon: "☀️", high: "85°", low: "63°" },
+    { day: "Fri", icon: "🌤️", high: "77°", low: "60°" },
+  ];
+
 
   useEffect(() => {
 
@@ -73,6 +76,7 @@ const forecast = [
     );
   }
 
+
   return (
     <div className="weather-page">
 
@@ -81,63 +85,100 @@ const forecast = [
         Search another ZIP
       </Link>
 
+
       <motion.div
         className="weather-card"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
       >
+
         <h2>Forecast4U</h2>
 
+
         <p className="location">
-  Forecast for {weather.location.city}, {weather.location.state}
-</p>
+          Forecast for {weather.location.city}, {weather.location.state}
+        </p>
+
 
         <div className="current-weather">
+
           <Sun size={72} />
 
           <div>
-            <h1>
-  {Math.round(weather.current.temperature)}°
-</h1>
 
-<p>
-  Current Conditions
-</p>
+            <h1>
+              {Math.round(weather.current.temperature)}°
+            </h1>
+
+            <p>
+              Current Conditions
+            </p>
+
           </div>
+
         </div>
+
 
         <div className="stats">
 
+
           <div>
             <Thermometer />
-            <span>Feels Like</span>
-            <strong>72°</strong>
+
+            <span>
+              Feels Like
+            </span>
+
+            <strong>
+              {Math.round(weather.current.temperature)}°
+            </strong>
           </div>
+
 
           <div>
             <Wind />
+
+            <span>
+              Wind
+            </span>
+
             <strong>
-  {weather.current.wind} mph
-</strong>
+              {weather.current.wind} mph
+            </strong>
           </div>
+
 
           <div>
             <Droplets />
-            <span>Humidity</span>
+
+            <span>
+              Humidity
+            </span>
+
             <strong>
-  {weather.current.humidity}%
-</strong>
+              {weather.current.humidity}%
+            </strong>
           </div>
+
 
           <div>
             <Eye />
-            <span>Visibility</span>
-            <strong>10 mi</strong>
+
+            <span>
+              Visibility
+            </span>
+
+            <strong>
+              10 mi
+            </strong>
           </div>
+
 
         </div>
 
+
       </motion.div>
+
 
 
       <h2 className="forecast-title">
@@ -145,25 +186,38 @@ const forecast = [
       </h2>
 
 
+
       <div className="forecast-strip">
 
         {forecast.map((day) => (
-          <div className="forecast-card" key={day.day}>
-            <h3>{day.day}</h3>
+
+          <div
+            className="forecast-card"
+            key={day.day}
+          >
+
+            <h3>
+              {day.day}
+            </h3>
+
 
             <div className="forecast-icon">
               {day.icon}
             </div>
 
+
             <strong>
               {day.high}
             </strong>
+
 
             <span>
               {day.low}
             </span>
 
+
           </div>
+
         ))}
 
       </div>
@@ -172,5 +226,6 @@ const forecast = [
     </div>
   );
 }
+
 
 export default WeatherPage;
