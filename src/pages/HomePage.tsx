@@ -37,22 +37,23 @@ function HomePage() {
           built for your day.
         </p>
 
-        <form onSubmit={handleSubmit}>
-          <div className="search-container">
-            <MapPin size={20} />
+        <form onSubmit={handleSubmit} className="search-container">
 
-            <input
-              placeholder="Enter ZIP code"
-              value={zip}
-              onChange={(e) => setZip(e.target.value)}
-              maxLength={5}
-            />
+  <TextInput
+    id="zip"
+    labelText=""
+    hideLabel
+    placeholder="Enter ZIP Code"
+    value={zip}
+    maxLength={5}
+    onChange={(e) => setZip(e.target.value)}
+  />
 
-            <button type="submit">
-              Get Forecast
-            </button>
-          </div>
-        </form>
+  <Button type="submit">
+    Get Forecast
+  </Button>
+
+</form>
 
         <div className="features">
           <div className="feature">
