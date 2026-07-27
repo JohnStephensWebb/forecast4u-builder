@@ -421,13 +421,17 @@ body {
   color:#334155;
 }
 
-.weather-card h2 {
-  margin-bottom:8px;
-  font-size:1.5rem;
-}
+.weather-card {
+  padding:40px;
+  border-radius:32px;
 
-.weather-card .location {
-  margin-bottom:0;
+  background:
+    rgba(255,255,255,.55);
+
+  backdrop-filter:blur(24px);
+
+  box-shadow:
+    0 30px 80px rgba(15,23,42,.12);
 }
 
 .location {
@@ -442,8 +446,10 @@ body {
 }
 
 .current-weather h1 {
-  font-size:5rem;
+  font-size:4.5rem;
+  line-height:1;
   margin:0;
+  letter-spacing:-0.05em;
 }
 
 
@@ -504,4 +510,13 @@ body {
 .forecast-icon {
   font-size:2.5rem;
   margin:15px 0;
+}
+
+.weather-card h2 {
+  margin-bottom:8px;
+  font-size:1.5rem;
+}
+
+.weather-card .location {
+  margin-bottom:0;
 }
