@@ -292,6 +292,14 @@ body {
   justify-content: space-between;
 }
 
+.search-container .cds--text-input__field-wrapper {
+  flex: 1;
+}
+
+.search-container .cds--text-input {
+  width: 100%;
+}
+
 
 .search-container input {
   flex:1;
