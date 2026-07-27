@@ -1,83 +1,57 @@
-import { motion } from "framer-motion";
-import { Search, MapPin, CloudSun, Zap, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
+import { motion } from "framer-motion";
 
 function HomePage() {
   const [zip, setZip] = useState("");
   const navigate = useNavigate();
 
-  function handleSearch() {
+  const handleSearch = () => {
     if (zip.length === 5) {
       navigate(`/weather/${zip}`);
     }
-  }
+  };
 
   return (
-    <section className="hero">
+    <div className="hero">
       <motion.div
         className="hero-content"
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.6 }}
       >
-        <div className="hero-icon">
-          <CloudSun size={48} />
-        </div>
-
         <h1>
           Weather intelligence
           <br />
-          built for your day.
+          made simple.
         </h1>
 
         <p>
-          Get accurate forecasts, personalized insights,
-          and weather information wherever you go.
+          Get accurate forecasts, real-time conditions, and insights that help
+          you plan your day with confidence.
         </p>
 
         <div className="search-container">
-          <MapPin size={20} />
-
           <input
+            type="text"
             placeholder="Enter ZIP code"
             value={zip}
+            maxLength={5}
             onChange={(e) => setZip(e.target.value)}
           />
 
           <button onClick={handleSearch}>
             <Search size={20} />
-            Forecast
+            Check Weather
           </button>
         </div>
 
-        <div className="features">
-
-          <div className="feature">
-            <Zap />
-            <span>
-              Fast forecasts
-            </span>
-          </div>
-
-          <div className="feature">
-            <ShieldCheck />
-            <span>
-              Reliable data
-            </span>
-          </div>
-
-          <div className="feature">
-            <CloudSun />
-            <span>
-              Smart insights
-            </span>
-          </div>
-
-        </div>
-
+        <span className="example">
+          Try a ZIP code like 80202
+        </span>
       </motion.div>
-    </section>
+    </div>
   );
 }
 
