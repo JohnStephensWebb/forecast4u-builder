@@ -1,4 +1,6 @@
 import { useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getWeatherByZip } from "../services/weather";
 import {
   Sun,
   Wind,
@@ -11,14 +13,23 @@ import { motion } from "framer-motion";
 
 function WeatherPage() {
   const { zip } = useParams();
+const [weather, setWeather] = useState<any>(null);
+const [loading, setLoading] = useState(true);
+const [error, setError] = useState("");
+  useEffect(() => {
+  async function loadWeather() {
+    try {
+      const data = await getWeatherByZip(zip || "");
+      setWeather(data);
+    } catch (err) {
+      setError("Unable to load weather data");
+    } finally {
+      setLoading(false);
+    }
+  }
 
-  const forecast = [
-    { day: "Mon", icon: "☀️", high: "82°", low: "61°" },
-    { day: "Tue", icon: "🌤️", high: "79°", low: "59°" },
-    { day: "Wed", icon: "🌧️", high: "68°", low: "55°" },
-    { day: "Thu", icon: "☀️", high: "85°", low: "63°" },
-    { day: "Fri", icon: "🌤️", high: "77°", low: "60°" },
-  ];
+  loadWeather();
+}, [zip]);
 
   return (
     <div className="weather-page">
