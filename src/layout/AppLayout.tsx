@@ -7,10 +7,10 @@ interface AppLayoutProps {
 
 function AppLayout({ children }: AppLayoutProps) {
   return (
-    <div className="app-shell">
+    <div className="app">
       <Navbar />
 
-      <main className="content">
+      <main>
         {children}
       </main>
     </div>
