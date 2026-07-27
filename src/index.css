@@ -508,16 +508,27 @@ body {
 
 .forecast-card {
 
-  padding:24px;
+  padding:28px 20px;
 
   text-align:center;
 
   border-radius:24px;
 
   background:
-    rgba(255,255,255,.7);
+    rgba(255,255,255,.6);
 
   backdrop-filter:blur(16px);
+
+  transition:
+    transform .2s ease;
+
+}
+
+
+.forecast-card:hover {
+
+  transform:
+    translateY(-6px);
 
 }
 
