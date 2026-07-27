@@ -1,0 +1,37 @@
+.weather-card {
+  width: 320px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__temperature {
+    font-size: 4rem;
+    font-weight: 600;
+    margin-top: 1rem;
+  }
+
+  &__condition {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  &__stats {
+    display: flex;
+    justify-content: space-between;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    span {
+      color: #525252;
+      font-size: 0.875rem;
+    }
+  }
+}
+
