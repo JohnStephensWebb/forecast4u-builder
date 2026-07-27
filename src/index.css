@@ -181,14 +181,20 @@ body {
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
+
   background:
+    radial-gradient(
+      circle at top left,
+      #bfdbfe,
+      transparent 40%
+    ),
     linear-gradient(
       135deg,
-      #dbeafe,
-      #eff6ff,
-      #ffffff
+      #f8fafc,
+      #e0f2fe
     );
-  color: #0f172a;
+
+  color: #020617;
 }
 
 
