@@ -301,6 +301,11 @@ body {
   background:none;
   font-size:1rem;
   outline:none;
+  color:#020617;
+}
+
+.search-container input::placeholder {
+  color:#64748b;
 }
 
 
