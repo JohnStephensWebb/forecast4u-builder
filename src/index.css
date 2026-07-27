@@ -239,10 +239,17 @@ body {
 
 
 .hero p {
-  font-size: 1.25rem;
-  color: #475569;
-  max-width: 600px;
-  margin: 0 auto 40px;
+
+  font-size:1.25rem;
+
+  color:#334155;
+
+  max-width:600px;
+
+  line-height:1.6;
+
+  margin:0 auto 40px;
+
 }
 
 
