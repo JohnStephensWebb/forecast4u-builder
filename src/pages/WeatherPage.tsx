@@ -1,421 +1,215 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getWeatherByZip } from "../services/weather";
-
 import {
   Wind,
   Droplets,
   Thermometer,
-  Eye,
   ArrowLeft,
 } from "lucide-react";
-
 import { motion } from "framer-motion";
 
-
 function getWeatherCondition(code: number) {
+  if (code === 0) return { icon: "☀️", label: "Clear" };
+  if ([1, 2, 3].includes(code)) return { icon: "🌤️", label: "Partly Cloudy" };
+  if ([45, 48].includes(code)) return { icon: "🌫️", label: "Fog" };
+  if ([51, 53, 55, 56, 57].includes(code)) return { icon: "🌦️", label: "Drizzle" };
+  if ([61, 63, 65, 80, 81, 82].includes(code)) return { icon: "🌧️", label: "Rain" };
+  if ([71, 73, 75, 77, 85, 86].includes(code)) return { icon: "❄️", label: "Snow" };
+  if ([95, 96, 99].includes(code)) return { icon: "⛈️", label: "Storm" };
 
-  if (code === 0) {
-    return {
-      icon: "☀️",
-      label: "Clear Sky",
-    };
-  }
-
-  if ([1, 2, 3].includes(code)) {
-    return {
-      icon: "🌤️",
-      label: "Partly Cloudy",
-    };
-  }
-
-  if ([45, 48].includes(code)) {
-    return {
-      icon: "🌫️",
-      label: "Foggy",
-    };
-  }
-
-  if ([51, 53, 55, 56, 57].includes(code)) {
-    return {
-      icon: "🌦️",
-      label: "Drizzle",
-    };
-  }
-
-  if ([61, 63, 65, 80, 81, 82].includes(code)) {
-    return {
-      icon: "🌧️",
-      label: "Rain",
-    };
-  }
-
-  if ([71, 73, 75, 77, 85, 86].includes(code)) {
-    return {
-      icon: "❄️",
-      label: "Snow",
-    };
-  }
-
-  if ([95, 96, 99].includes(code)) {
-    return {
-      icon: "⛈️",
-      label: "Thunderstorms",
-    };
-  }
-
-  return {
-    icon: "🌤️",
-    label: "Unknown",
-  };
-
+  return { icon: "🌤️", label: "Unknown" };
 }
-
 
 function formatDay(date: string) {
-
-  return new Date(date).toLocaleDateString(
-    "en-US",
-    {
-      weekday: "short",
-    }
-  );
-
+  return new Date(date).toLocaleDateString("en-US", {
+    weekday: "long",
+  });
 }
 
-
+function formatTime(date: string) {
+  return new Date(date).toLocaleTimeString("en-US", {
+    hour: "numeric",
+    hour12: true,
+  });
+}
 
 function WeatherPage() {
-
   const { zip } = useParams();
 
   const [weather, setWeather] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-
-
   useEffect(() => {
-
     async function loadWeather() {
-
       try {
-
         const data = await getWeatherByZip(zip || "");
-
         setWeather(data);
-
-      } catch (err) {
-
+      } catch {
         setError("Unable to load weather data");
-
       } finally {
-
         setLoading(false);
-
       }
-
     }
 
-
     loadWeather();
-
   }, [zip]);
 
-
-
   if (loading) {
-
     return (
       <div className="weather-page">
         <h2>Loading forecast...</h2>
       </div>
     );
-
   }
 
-
-
   if (error) {
-
     return (
       <div className="weather-page">
         <h2>{error}</h2>
       </div>
     );
-
   }
 
+  const current = getWeatherCondition(weather.current.code);
 
+  const grouped = weather.hourly.reduce(
+    (acc: Record<string, any[]>, item: any) => {
+      const day = formatDay(item.time);
 
-  const currentCondition =
-    getWeatherCondition(weather.current.code);
+      if (!acc[day]) {
+        acc[day] = [];
+      }
 
+      acc[day].push(item);
 
-
-  const forecast =
-    weather.forecast.map((day: any) => ({
-      day: formatDay(day.date),
-      icon: getWeatherCondition(day.weatherCode).icon,
-      high: `${Math.round(day.high)}°`,
-      low: `${Math.round(day.low)}°`,
-    }));
-
-
+      return acc;
+    },
+    {}
+  );
 
   return (
-
     <div className="weather-page">
 
-
       <Link to="/" className="back-link">
-
         <ArrowLeft size={18} />
-
         Search another ZIP
-
       </Link>
 
-
-
-
       <motion.div
-
         className="weather-card"
-
-        initial={{
-          opacity: 0,
-          y: 20,
-        }}
-
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
       >
 
-
-        <h2>
-          Forecast4U
-        </h2>
-
-
+        <h2>Forecast4U</h2>
 
         <p className="location">
-
-          Forecast for {weather.location.city}, {weather.location.state}
-
+          {weather.location.city}, {weather.location.state}
         </p>
-
-
-
 
         <div className="current-weather">
 
-
           <div className="weather-icon-large">
-
-            {currentCondition.icon}
-
+            {current.icon}
           </div>
-
-
 
           <div>
-
-
             <h1>
-
               {Math.round(weather.current.temperature)}°
-
             </h1>
 
-
-
-            <p>
-
-              {currentCondition.label}
-
-            </p>
-
-
+            <p>{current.label}</p>
           </div>
 
-
         </div>
-
-
-
-
 
         <div className="stats">
 
-
           <div>
-
             <Thermometer />
-
-            <span>
-              Feels Like
-            </span>
-
-
-            <strong>
-
-              {Math.round(weather.current.temperature)}°
-
-            </strong>
-
-
+            <span>Temperature</span>
+            <strong>{Math.round(weather.current.temperature)}°</strong>
           </div>
 
-
-
-
-
           <div>
-
             <Wind />
-
-            <span>
-              Wind
-            </span>
-
-
-            <strong>
-
-              {weather.current.wind} mph
-
-            </strong>
-
-
+            <span>Wind</span>
+            <strong>{Math.round(weather.current.wind)} mph</strong>
           </div>
 
-
-
-
-
           <div>
-
             <Droplets />
-
-            <span>
-              Humidity
-            </span>
-
-
-            <strong>
-
-              {weather.current.humidity}%
-
-            </strong>
-
-
+            <span>Humidity</span>
+            <strong>{weather.current.humidity}%</strong>
           </div>
-
-
-
-
-
-          <div>
-
-            <Eye />
-
-            <span>
-              Visibility
-            </span>
-
-
-            <strong>
-              10 mi
-            </strong>
-
-
-          </div>
-
-
 
         </div>
 
-
-
       </motion.div>
 
-
-
-
-
       <h2 className="forecast-title">
-
-        7 Day Forecast
-
+        5-Day Forecast (Every 3 Hours)
       </h2>
 
+      {Object.entries(grouped).map(([day, entries]) => (
 
+        <div key={day} className="forecast-day">
 
+          <h3>{day}</h3>
 
+          <div className="forecast-strip">
 
-      <div className="forecast-strip">
+            {(entries as any[]).map((hour) => {
 
+              const condition = getWeatherCondition(hour.weatherCode);
 
-        {forecast.map((day: any) => (
+              return (
 
+                <div
+                  className="forecast-card"
+                  key={hour.time}
+                >
 
-          <div
+                  <div className="forecast-time">
+                    {formatTime(hour.time)}
+                  </div>
 
-            className="forecast-card"
+                  <div className="forecast-icon">
+                    {condition.icon}
+                  </div>
 
-            key={day.day}
+                  <strong>
+                    {Math.round(hour.temperature)}°
+                  </strong>
 
-          >
+                  <small>
+                    {condition.label}
+                  </small>
 
+                  <small>
+                    💨 {Math.round(hour.wind)} mph
+                  </small>
 
-            <h3>
-              {day.day}
-            </h3>
+                  <small>
+                    🌧 {hour.precipitation}%
+                  </small>
 
+                </div>
 
+              );
 
-            <div className="forecast-icon">
-
-              {day.icon}
-
-            </div>
-
-
-
-            <strong>
-
-              {day.high}
-
-            </strong>
-
-
-
-            <span>
-
-              {day.low}
-
-            </span>
-
-
+            })}
 
           </div>
 
+        </div>
 
-        ))}
-
-
-      </div>
-
-
+      ))}
 
     </div>
-
   );
-
 }
-
 
 export default WeatherPage;
