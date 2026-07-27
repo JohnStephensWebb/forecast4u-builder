@@ -562,3 +562,28 @@ body {
   }
 
 }
+
+.weather-card h2 {
+  color: #020617;
+}
+
+.current-weather h1 {
+  color: #020617;
+}
+
+.current-weather p {
+  color: #334155;
+}
+
+.forecast-title {
+  color: #020617;
+}
+
+.forecast-card h3,
+.forecast-card strong {
+  color: #020617;
+}
+
+.forecast-card span {
+  color: #64748b;
+}
