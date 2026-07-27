@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CloudSun, MapPin } from "lucide-react";
+import { CloudSun, MapPin, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -16,13 +16,16 @@ function HomePage() {
   }
 
   return (
-    <div className="home">
+    <section className="hero">
       <motion.div
+        className="hero-content"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <CloudSun size={72} />
+        <div className="hero-icon">
+          <CloudSun size={72} />
+        </div>
 
         <h1>Forecast4U</h1>
 
@@ -33,7 +36,7 @@ function HomePage() {
         </p>
 
         <form onSubmit={handleSubmit}>
-          <div className="search-box">
+          <div className="search-container">
             <MapPin size={20} />
 
             <input
@@ -48,8 +51,25 @@ function HomePage() {
             </button>
           </div>
         </form>
+
+        <div className="features">
+          <div className="feature">
+            <Zap size={18} />
+            Fast forecasts
+          </div>
+
+          <div className="feature">
+            <ShieldCheck size={18} />
+            Reliable data
+          </div>
+
+          <div className="feature">
+            <Sparkles size={18} />
+            Smart insights
+          </div>
+        </div>
       </motion.div>
-    </div>
+    </section>
   );
 }
 
