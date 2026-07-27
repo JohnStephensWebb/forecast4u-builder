@@ -546,3 +546,19 @@ body {
 .weather-card .location {
   margin-bottom:0;
 }
+
+@media (max-width: 800px) {
+
+  .stats {
+    grid-template-columns:1fr 1fr;
+  }
+
+  .forecast-strip {
+    grid-template-columns:1fr;
+  }
+
+  .weather-page {
+    padding:24px;
+  }
+
+}
