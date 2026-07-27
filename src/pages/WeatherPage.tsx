@@ -287,7 +287,7 @@ function WeatherPage() {
 
       <h2 className="forecast-title">
 
-        5 Day Forecast
+        7 Day Forecast
 
       </h2>
 
