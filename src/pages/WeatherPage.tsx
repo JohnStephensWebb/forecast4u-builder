@@ -17,7 +17,7 @@ import { motion } from "framer-motion";
 function WeatherPage() {
   const { zip } = useParams();
 
-  const [weather, setWeather] = useState<any>(null);
+  const [_weather, setWeather] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 const forecast = [
