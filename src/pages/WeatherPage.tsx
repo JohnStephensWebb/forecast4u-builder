@@ -73,6 +73,14 @@ function WeatherPage() {
     );
   }
 
+  if (!weather) {
+    return (
+      <div className="weather-page">
+        <h2>No weather data available</h2>
+      </div>
+    );
+  }
+
   const current = getWeatherCondition(weather.current.code);
 
   const grouped = weather.hourly.reduce(
