@@ -1,58 +1,113 @@
-import { useParams } from "react-router-dom";
-
+import { useParams, Link } from "react-router-dom";
 import {
-  Tile,
-  Grid,
-  Column,
-  Button,
-} from "@carbon/react";
+  Sun,
+  Wind,
+  Droplets,
+  Thermometer,
+  Eye,
+  ArrowLeft,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
 function WeatherPage() {
   const { zip } = useParams();
 
+  const forecast = [
+    { day: "Mon", icon: "☀️", high: "82°", low: "61°" },
+    { day: "Tue", icon: "🌤️", high: "79°", low: "59°" },
+    { day: "Wed", icon: "🌧️", high: "68°", low: "55°" },
+    { day: "Thu", icon: "☀️", high: "85°", low: "63°" },
+    { day: "Fri", icon: "🌤️", high: "77°", low: "60°" },
+  ];
+
   return (
-    <div style={{ padding: "2rem", maxWidth: "1100px", margin: "0 auto" }}>
-      <h1>Forecast4U</h1>
+    <div className="weather-page">
 
-      <p style={{ marginBottom: "2rem" }}>
-        Forecast for ZIP Code <strong>{zip}</strong>
-      </p>
+      <Link to="/" className="back-link">
+        <ArrowLeft size={18} />
+        Search another ZIP
+      </Link>
 
-      <Grid condensed>
-        <Column sm={4} md={4} lg={4}>
-          <Tile>
-            <h3>Current Conditions</h3>
+      <motion.div
+        className="weather-card"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <h2>Forecast4U</h2>
 
-            <h1>72°F</h1>
+        <p className="location">
+          Forecast for ZIP {zip}
+        </p>
 
+        <div className="current-weather">
+          <Sun size={72} />
+
+          <div>
+            <h1>72°</h1>
             <p>Mostly Sunny</p>
-          </Tile>
-        </Column>
+          </div>
+        </div>
 
-        <Column sm={4} md={4} lg={4}>
-          <Tile>
-            <h3>Wind</h3>
+        <div className="stats">
 
-            <h2>8 mph</h2>
+          <div>
+            <Thermometer />
+            <span>Feels Like</span>
+            <strong>72°</strong>
+          </div>
 
-            <p>NW</p>
-          </Tile>
-        </Column>
+          <div>
+            <Wind />
+            <span>Wind</span>
+            <strong>8 mph NW</strong>
+          </div>
 
-        <Column sm={4} md={4} lg={4}>
-          <Tile>
-            <h3>Humidity</h3>
+          <div>
+            <Droplets />
+            <span>Humidity</span>
+            <strong>41%</strong>
+          </div>
 
-            <h2>41%</h2>
-          </Tile>
-        </Column>
-      </Grid>
+          <div>
+            <Eye />
+            <span>Visibility</span>
+            <strong>10 mi</strong>
+          </div>
 
-      <div style={{ marginTop: "2rem" }}>
-        <Button kind="secondary" href="/">
-          Search Another ZIP
-        </Button>
+        </div>
+
+      </motion.div>
+
+
+      <h2 className="forecast-title">
+        5 Day Forecast
+      </h2>
+
+
+      <div className="forecast-strip">
+
+        {forecast.map((day) => (
+          <div className="forecast-card" key={day.day}>
+            <h3>{day.day}</h3>
+
+            <div className="forecast-icon">
+              {day.icon}
+            </div>
+
+            <strong>
+              {day.high}
+            </strong>
+
+            <span>
+              {day.low}
+            </span>
+
+          </div>
+        ))}
+
       </div>
+
+
     </div>
   );
 }
