@@ -116,7 +116,7 @@ const forecast = [
 
           <div>
             <Wind />
-            <<strong>
+            <strong>
   {weather.current.wind} mph
 </strong>
           </div>
