@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { getWeatherByZip } from "../services/weather";
 
 import {
-  Sun,
   Wind,
   Droplets,
   Thermometer,
@@ -85,6 +84,7 @@ function formatDay(date: string) {
 }
 
 
+
 function WeatherPage() {
 
   const { zip } = useParams();
@@ -92,6 +92,7 @@ function WeatherPage() {
   const [weather, setWeather] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
 
 
   useEffect(() => {
@@ -147,12 +148,18 @@ function WeatherPage() {
 
 
 
-  const forecast = weather.forecast.map((day: any) => ({
-    day: formatDay(day.date),
-    icon: getWeatherIcon(day.weatherCode),
-    high: `${Math.round(day.high)}°`,
-    low: `${Math.round(day.low)}°`,
-  }));
+  const currentCondition =
+    getWeatherCondition(weather.current.code);
+
+
+
+  const forecast =
+    weather.forecast.map((day: any) => ({
+      day: formatDay(day.date),
+      icon: getWeatherCondition(day.weatherCode).icon,
+      high: `${Math.round(day.high)}°`,
+      low: `${Math.round(day.low)}°`,
+    }));
 
 
 
@@ -171,13 +178,20 @@ function WeatherPage() {
 
 
 
+
       <motion.div
 
         className="weather-card"
 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
 
-        animate={{ opacity: 1, y: 0 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
 
       >
 
@@ -200,7 +214,12 @@ function WeatherPage() {
         <div className="current-weather">
 
 
-          <Sun size={72} />
+          <div className="weather-icon-large">
+
+            {currentCondition.icon}
+
+          </div>
+
 
 
           <div>
@@ -213,9 +232,10 @@ function WeatherPage() {
             </h1>
 
 
+
             <p>
 
-              Current Conditions
+              {currentCondition.label}
 
             </p>
 
@@ -224,6 +244,7 @@ function WeatherPage() {
 
 
         </div>
+
 
 
 
@@ -246,7 +267,9 @@ function WeatherPage() {
 
             </strong>
 
+
           </div>
+
 
 
 
@@ -266,7 +289,9 @@ function WeatherPage() {
 
             </strong>
 
+
           </div>
+
 
 
 
@@ -286,7 +311,9 @@ function WeatherPage() {
 
             </strong>
 
+
           </div>
+
 
 
 
@@ -303,6 +330,7 @@ function WeatherPage() {
             <strong>
               10 mi
             </strong>
+
 
           </div>
 
@@ -344,9 +372,7 @@ function WeatherPage() {
 
 
             <h3>
-
               {day.day}
-
             </h3>
 
 
@@ -379,7 +405,6 @@ function WeatherPage() {
 
 
         ))}
-
 
 
       </div>
