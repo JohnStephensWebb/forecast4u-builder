@@ -587,3 +587,11 @@ body {
 .forecast-card span {
   color: #64748b;
 }
+
+.home h1 {
+  color: #020617;
+}
+
+.home p {
+  color: #334155;
+}
