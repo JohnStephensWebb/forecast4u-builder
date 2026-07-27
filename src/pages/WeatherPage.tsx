@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getWeatherByZip } from "../services/weather";
+
 import {
   Sun,
   Wind,
@@ -9,34 +10,68 @@ import {
   Eye,
   ArrowLeft,
 } from "lucide-react";
+
 import { motion } from "framer-motion";
+
 
 function WeatherPage() {
   const { zip } = useParams();
-const [weather, setWeather] = useState<any>(null);
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState("");
+
+  const [weather, setWeather] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+const forecast = [
+  { day: "Mon", icon: "☀️", high: "82°", low: "61°" },
+  { day: "Tue", icon: "🌤️", high: "79°", low: "59°" },
+  { day: "Wed", icon: "🌧️", high: "68°", low: "55°" },
+  { day: "Thu", icon: "☀️", high: "85°", low: "63°" },
+  { day: "Fri", icon: "🌤️", high: "77°", low: "60°" },
+];
+
   useEffect(() => {
-  async function loadWeather() {
-    try {
-      const data = await getWeatherByZip(zip || "");
-      setWeather(data);
-    } catch (err) {
-      setError("Unable to load weather data");
-    } finally {
-      setLoading(false);
+
+    async function loadWeather() {
+
+      try {
+
+        const data = await getWeatherByZip(zip || "");
+
+        setWeather(data);
+
+      } catch (err) {
+
+        setError("Unable to load weather data");
+
+      } finally {
+
+        setLoading(false);
+
+      }
+
     }
+
+
+    loadWeather();
+
+  }, [zip]);
+
+
+  if (loading) {
+    return (
+      <div className="weather-page">
+        <h2>Loading forecast...</h2>
+      </div>
+    );
   }
 
-  loadWeather();
-  }, [zip]);
-if (loading) {
-  return <h2>Loading forecast...</h2>;
-}
 
-if (error) {
-  return <h2>{error}</h2>;
-}
+  if (error) {
+    return (
+      <div className="weather-page">
+        <h2>{error}</h2>
+      </div>
+    );
+  }
 
   return (
     <div className="weather-page">
