@@ -44,6 +44,11 @@ function HomePage() {
           placeholder="Enter ZIP Code"
           value={zip}
           onChange={(e) => setZip(e.target.value)}
+          onKeyDown={(e) => {
+  if (e.key === "Enter") {
+    handleSubmit();
+  }
+}}
         />
 
         <div style={{ marginTop: "1.5rem" }}>
