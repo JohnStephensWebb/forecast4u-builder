@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Button, TextInput } from "@carbon/react";
+
 function HomePage() {
   const [zip, setZip] = useState("");
   const navigate = useNavigate();
@@ -8,47 +10,46 @@ function HomePage() {
   const handleSubmit = () => {
     if (zip.trim().length === 5) {
       navigate(`/weather/${zip}`);
-    } else {
-      alert("Please enter a valid 5-digit ZIP code.");
     }
   };
 
   return (
     <div
       style={{
-        maxWidth: "500px",
-        margin: "80px auto",
-        textAlign: "center",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        background: "#f4f4f4",
       }}
     >
-      <h1>Forecast4U</h1>
-
-      <p>Enter your ZIP code to view the forecast.</p>
-
-      <input
-        type="text"
-        placeholder="ZIP Code"
-        value={zip}
-        onChange={(e) => setZip(e.target.value)}
-        maxLength={5}
+      <div
         style={{
-          padding: "12px",
-          width: "100%",
-          fontSize: "18px",
-          marginBottom: "20px",
-        }}
-      />
-
-      <button
-        onClick={handleSubmit}
-        style={{
-          padding: "12px 24px",
-          fontSize: "18px",
-          cursor: "pointer",
+          width: "420px",
+          background: "white",
+          padding: "2rem",
+          borderRadius: "12px",
+          boxShadow: "0 8px 24px rgba(0,0,0,.08)",
         }}
       >
-        Get Forecast
-      </button>
+        <h1>Forecast4U</h1>
+
+        <p style={{ marginBottom: "2rem" }}>
+          Accurate weather forecasts powered by the National Weather Service.
+        </p>
+
+        <TextInput
+          id="zip"
+          labelText="ZIP Code"
+          placeholder="Enter ZIP Code"
+          value={zip}
+          onChange={(e) => setZip(e.target.value)}
+        />
+
+        <div style={{ marginTop: "1.5rem" }}>
+          <Button onClick={handleSubmit}>Get Forecast</Button>
+        </div>
+      </div>
     </div>
   );
 }
