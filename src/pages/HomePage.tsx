@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { CloudSun, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "../styles/home.css";
 
 function HomePage() {
   const navigate = useNavigate();
