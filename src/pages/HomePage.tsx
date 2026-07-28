@@ -4,7 +4,6 @@ import { CloudSun, ShieldCheck, Zap, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-
 function HomePage() {
   const navigate = useNavigate();
   const [zip, setZip] = useState("");
@@ -37,25 +36,29 @@ function HomePage() {
           built for your day.
         </p>
 
-        <form onSubmit={handleSubmit} className="search-container">
+        <form
+          onSubmit={handleSubmit}
+          className="search-container"
+        >
+          <div className="zip-input-wrapper">
+            <TextInput
+              id="zip"
+              labelText="ZIP Code"
+              hideLabel
+              placeholder="Enter ZIP Code"
+              value={zip}
+              maxLength={5}
+              onChange={(e) => setZip(e.target.value)}
+            />
+          </div>
 
- <div className="zip-input-wrapper">
-  <TextInput
-    id="zip"
-    labelText=" "
-    hideLabel
-    placeholder="Enter ZIP Code"
-    value={zip}
-    maxLength={5}
-    onChange={(e) => setZip(e.target.value)}
-  />
-</div>
-
-  <Button type="submit">
-    Get Forecast
-  </Button>
-
-</form>
+          <Button
+            type="submit"
+            className="forecast-button"
+          >
+            Get Forecast
+          </Button>
+        </form>
 
         <div className="features">
           <div className="feature">
