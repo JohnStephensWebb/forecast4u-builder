@@ -39,15 +39,17 @@ function HomePage() {
 
         <form onSubmit={handleSubmit} className="search-container">
 
+ <div className="zip-input-wrapper">
   <TextInput
     id="zip"
-    labelText="ZIP Code"
+    labelText=" "
     hideLabel
     placeholder="Enter ZIP Code"
     value={zip}
     maxLength={5}
     onChange={(e) => setZip(e.target.value)}
   />
+</div>
 
   <Button type="submit">
     Get Forecast
