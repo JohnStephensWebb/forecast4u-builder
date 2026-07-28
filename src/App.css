@@ -1,1 +1,37 @@
-/* App-specific styles go here */
+body {
+  margin: 0;
+  font-family: "IBM Plex Sans", sans-serif;
+
+  background:
+    linear-gradient(-45deg,
+      #061a40,
+      #0353a4,
+      #006daa,
+      #003566);
+
+  background-size: 400% 400%;
+
+  animation: gradientMove 18s ease infinite;
+
+  min-height: 100vh;
+
+  color: white;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
