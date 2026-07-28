@@ -1,22 +1,4 @@
 :root {
-  --bg-primary: #f8fafc;
-  --bg-secondary: #e0f2fe;
-
-  --text-primary: #020617;
-  --text-secondary: #475569;
-
-  --card-bg: rgba(255,255,255,0.65);
-  --card-border: rgba(255,255,255,0.5);
-
-  --blue: #2563eb;
-  --blue-dark: #1d4ed8;
-
-  --shadow-lg:
-    0 30px 80px rgba(15,23,42,.12);
-
-  --radius-lg: 32px;
-  --radius-md: 20px;
-
   font-family:
     Inter,
     system-ui,
@@ -25,33 +7,43 @@
     "Segoe UI",
     sans-serif;
 
-  color: var(--text-primary);
-  background: var(--bg-primary);
+  color: #0f172a;
+  background: #f8fafc;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-}
+  -webkit-font-smoothing: antialiased;
 
+  --blue: #2563eb;
+  --blue-dark: #1d4ed8;
+
+  --text: #0f172a;
+  --muted: #64748b;
+
+  --glass:
+    rgba(255,255,255,0.65);
+
+  --shadow:
+    0 25px 60px rgba(15,23,42,.12);
+}
 
 * {
   box-sizing: border-box;
 }
 
-
 html,
 body,
 #root {
-  margin:0;
-  min-height:100%;
+  margin: 0;
+  min-height: 100%;
 }
-
 
 body {
 
   background:
     radial-gradient(
       circle at top left,
-      #bfdbfe,
+      #dbeafe,
       transparent 35%
     ),
     linear-gradient(
@@ -60,18 +52,15 @@ body {
       #e0f2fe
     );
 
-  color:var(--text-primary);
-
+  color: var(--text);
 }
 
-
 a {
-  color:inherit;
+  color: inherit;
   text-decoration:none;
 }
 
-
 button,
 input {
-  font-family:inherit;
+  font-family: inherit;
 }
