@@ -284,3 +284,57 @@
 
 
 }
+
+/* Fix Carbon input sizing */
+
+.zip-input-wrapper {
+
+  flex: 1;
+
+  min-width: 0;
+
+}
+
+
+.zip-input-wrapper .cds--form-item {
+
+  margin-bottom:0;
+
+}
+
+
+.zip-input-wrapper .cds--text-input__field-wrapper {
+
+  width:100%;
+
+}
+
+
+.zip-input-wrapper .cds--text-input {
+
+  width:100%;
+
+}
+
+
+.zip-input-wrapper .cds--label {
+
+  display:none;
+
+}
+
+
+/* Keep search items together */
+
+.search-container {
+
+  justify-content:center;
+
+}
+
+
+.search-container .cds--btn {
+
+  flex-shrink:0;
+
+}
