@@ -1,47 +1,55 @@
 .hero {
+
   min-height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-}
-
-
-.hero-content {
-  width: 100%;
-  max-width: 850px;
-
-  text-align: center;
-
-  padding: 64px;
-
-  border-radius: 40px;
-
-  background: rgba(255,255,255,.65);
-
-  border: 1px solid rgba(255,255,255,.8);
-
-  backdrop-filter: blur(24px);
-
-  box-shadow:
-    0 30px 80px rgba(15,23,42,.12);
-}
-
-
-
-/* Weather icon */
-
-.hero-icon {
-  width: 96px;
-  height: 96px;
-
-  margin: 0 auto 28px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  border-radius:32px;
+  padding:40px;
+
+}
+
+
+.hero-content {
+
+  width:100%;
+  max-width:900px;
+
+  text-align:center;
+
+  padding:72px 64px;
+
+  border-radius:48px;
+
+  background:
+    rgba(255,255,255,.55);
+
+  border:
+    1px solid rgba(255,255,255,.75);
+
+  backdrop-filter:
+    blur(30px);
+
+  box-shadow:
+    0 40px 100px rgba(15,23,42,.15);
+
+}
+
+
+/* Icon */
+
+.hero-icon {
+
+  display:inline-flex;
+
+  align-items:center;
+  justify-content:center;
+
+  width:120px;
+  height:120px;
+
+  border-radius:36px;
 
   background:
     linear-gradient(
@@ -52,23 +60,24 @@
 
   color:white;
 
+  margin-bottom:32px;
+
   box-shadow:
-    0 20px 40px rgba(37,99,235,.3);
+    0 20px 40px rgba(37,99,235,.35);
+
 }
 
 
-
-/* Hero typography */
+/* Typography */
 
 .hero h1 {
 
-  margin:
-    0 0 16px;
-
   font-size:
-    clamp(3rem,6vw,5rem);
+    clamp(3.5rem,7vw,5.5rem);
 
   font-weight:800;
+
+  margin-bottom:20px;
 
   letter-spacing:-.05em;
 
@@ -77,60 +86,67 @@
 
 .hero p {
 
-  margin:
-    0 auto 36px;
-
-  max-width:600px;
+  font-size:1.35rem;
 
   color:#475569;
 
-  font-size:1.25rem;
-
-  line-height:1.6;
+  margin-bottom:40px;
 
 }
 
 
-
-/* Search bar */
+/* Search container */
 
 .search-container {
-
-  max-width:560px;
-
-  margin:0 auto;
 
   display:flex;
 
   align-items:center;
 
-  gap:10px;
+  justify-content:center;
 
-  padding:6px;
+  gap:12px;
 
-  border-radius:18px;
+  width:100%;
 
-  background:white;
+  max-width:560px;
+
+  margin:0 auto;
+
+  padding:10px 12px;
+
+  border-radius:24px;
+
+  background:
+    rgba(255,255,255,.9);
+
+  border:
+    1px solid rgba(255,255,255,.8);
 
   box-shadow:
-    0 15px 35px rgba(15,23,42,.12);
+    0 20px 40px rgba(15,23,42,.12);
 
 }
 
 
-
-/* Carbon wrapper */
+/* Carbon input wrapper */
 
 .zip-input-wrapper {
 
   flex:1;
 
-  min-width:0;
+  display:flex;
+
+  align-items:center;
 
 }
 
 
+/* Remove Carbon default styling */
+
 .zip-input-wrapper .cds--form-item {
+
+  width:100%;
 
   margin:0;
 
@@ -144,13 +160,24 @@
 }
 
 
+.zip-input-wrapper .cds--text-input__field-wrapper {
+
+  width:100%;
+
+  background:transparent;
+
+}
+
+
 .zip-input-wrapper .cds--text-input {
 
   width:100%;
 
   height:48px;
 
-  background:white;
+  background:transparent;
+
+  border:none;
 
 }
 
@@ -161,22 +188,17 @@
 
   height:48px;
 
+  background:transparent;
+
   border:none;
 
   border-radius:14px;
 
-  background:white;
-
-  color:#0f172a;
+  padding:0 18px;
 
   font-size:16px;
 
-  padding-left:16px;
-
-}
-
-
-.zip-input-wrapper .cds--text-input__field:focus {
+  color:#0f172a;
 
   outline:none;
 
@@ -185,23 +207,27 @@
 }
 
 
+.zip-input-wrapper .cds--text-input__field:focus {
 
-/* Remove Carbon decorative lines */
+  outline:none;
 
-.zip-input-wrapper 
-.cds--text-input__field-wrapper::before,
-.zip-input-wrapper 
-.cds--text-input__field-wrapper::after {
+  border:none;
 
-  display:none;
+  box-shadow:none;
 
 }
 
 
+.zip-input-wrapper .cds--text-input__field::placeholder {
+
+  color:#64748b;
+
+}
+
 
 /* Button */
 
-.forecast-button {
+.search-container .cds--btn {
 
   flex-shrink:0;
 
@@ -212,7 +238,7 @@
   padding:
     0 22px;
 
-  background:#2563eb;
+  background:#3b82f6;
 
   color:white;
 
@@ -229,15 +255,14 @@
 }
 
 
-.forecast-button:hover {
+.search-container .cds--btn:hover {
 
-  background:#1d4ed8;
+  background:#2563eb;
 
   transform:
     translateY(-2px);
 
 }
-
 
 
 /* Feature pills */
@@ -299,7 +324,6 @@
 }
 
 
-
 /* Mobile */
 
 @media(max-width:700px){
@@ -335,7 +359,7 @@
   }
 
 
-  .forecast-button {
+  .search-container .cds--btn {
 
     width:100%;
 
