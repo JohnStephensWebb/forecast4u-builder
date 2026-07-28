@@ -143,15 +143,45 @@
 }
 
 
-.search-container
-.cds--text-input input {
+.search-container .cds--text-input__field {
 
   background:
     transparent;
 
   border:none;
 
+  border-radius:16px;
+
+  height:52px;
+
+  padding-left:18px;
+
+  color:#0f172a;
+
   font-size:1.05rem;
+
+}
+
+
+.search-container .cds--text-input__field:focus {
+
+  outline:none;
+
+  box-shadow:none;
+
+}
+
+
+.search-container .cds--text-input__field::placeholder {
+
+  color:#64748b;
+
+}
+
+
+.search-container .cds--text-input__field-wrapper {
+
+  background:transparent;
 
 }
 
