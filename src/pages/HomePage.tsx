@@ -41,7 +41,7 @@ function HomePage() {
 
   <TextInput
     id="zip"
-    labelText=""
+    labelText="ZIP Code"
     hideLabel
     placeholder="Enter ZIP Code"
     value={zip}
