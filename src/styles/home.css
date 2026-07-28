@@ -201,7 +201,7 @@
 
 /* Button */
 
-.search-container .cds--btn {
+.forecast-button {
 
   flex-shrink:0;
 
@@ -220,6 +220,8 @@
 
   font-weight:600;
 
+  border:none;
+
   transition:
     background .2s ease,
     transform .2s ease;
@@ -227,7 +229,7 @@
 }
 
 
-.search-container .cds--btn:hover {
+.forecast-button:hover {
 
   background:#1d4ed8;
 
@@ -333,7 +335,7 @@
   }
 
 
-  .search-container .cds--btn {
+  .forecast-button {
 
     width:100%;
 
